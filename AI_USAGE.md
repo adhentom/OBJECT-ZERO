@@ -8,7 +8,8 @@ No participant AI usage has been recorded yet. Replace the placeholder row as yo
 
 | Date and time with timezone | Tool / model, if known | Task | Assistance and affected files | Human review / corrections | Validation and result |
 | --- | --- | --- | --- | --- | --- |
-| 2026-10-24T22:55:00+05:30 | Devin (Cognition AI) | Repository assessment, rebuild plan, and bootstrap | Planned the rebuild (approved by @adhentom). Copied event docs from junk-arena and created the Next.js/Phaser scaffold (`package.json`, configs, `src/app`, `src/ui`, `src/game/phaser`) | Plan approved by @adhentom; code review pending | typecheck, lint and build passed; no tests yet |
+| 2026-10-24T22:55:00+05:30 | Devin (Cognition AI) | Repository assessment, rebuild plan, and bootstrap | Planned the rebuild (approved by @adhentom). Copied event docs from junk-arena and created the Next.js/Phaser scaffold (`package.json`, configs, `src/app`, `src/ui`, `src/game/phaser`) | Plan approved by @adhentom. I pushed this commit straight to `main` on my reading of "approve plan"; @adhentom later confirmed keeping it there. Code review pending | typecheck, lint and build passed; `npm test` exited 1 (no test files) |
+| 2026-10-24T23:10:59+05:30 | Devin (Cognition AI) | M0 fix: client-boundary test and favicon | Added `src/ui/clientBoundary.test.ts` and `src/app/icon.svg` | Fix approach chosen by @adhentom; review pending | lint, typecheck, build passed; `npm test` 1 file / 3 tests passed; test fails when a Phaser import is added to `page.tsx` |
 
 ## Template preparation
 
