@@ -1,5 +1,17 @@
 # Change log
 
+## 2026-10-24T23:10:59+05:30 — M0 fix: real `npm test` and favicon
+
+- Changed:
+  - added `src/ui/clientBoundary.test.ts`, which checks that `src/app/page.tsx` and `src/app/layout.tsx` never import Phaser or the game, and that `GameShell.tsx` is a `"use client"` component that loads `createGame` only through a dynamic `import()` inside `useEffect`;
+  - added `src/app/icon.svg`.
+- Why: at the bootstrap commit, `npm test` exited with code 1 ("No test files found"), and the browser logged a 404 for the missing favicon. The test guards the M0 requirement that Phaser stays out of server-rendered modules.
+- Validation:
+  - `npm run lint`, `npm run typecheck` and `npm run build` passed;
+  - `npm test` passed (1 file, 3 tests);
+  - the test failed as expected when a Phaser import was temporarily added to `page.tsx`, and again when a static `createGame` import was added to `GameShell.tsx`.
+- Limitations: this is a source-level check, not a bundle analysis. Turbopack still emits an unused server-side chunk for the dynamically imported game module; it is never executed during server rendering.
+
 ## 2026-10-24T22:55:00+05:30 — Bootstrap OBJECT ZERO repository
 
 - Changed: added the event documentation (`AGENTS.md`, `RULES.md`, `README.md`, `CHANGELOG.md`, `AI_USAGE.md`, `SUBMISSION.md`, `.gitignore`, `.github/pull_request_template.md`) copied from the team's `adhentom/junk-arena` template, including the pending Devin Hack Kochi correction (junk-arena PR #2). Added a Next.js 16 + React 19 + TypeScript + Phaser 3.90 scaffold (`package.json`, `package-lock.json`, `.nvmrc`, `tsconfig.json`, `next.config.ts`, `eslint.config.mjs`, `vitest.config.mts`, `src/app/*`, `src/ui/GameShell.tsx`, `src/game/phaser/*`) with a placeholder title scene.
