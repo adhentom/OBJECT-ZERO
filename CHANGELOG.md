@@ -1,5 +1,12 @@
 # Change log
 
+## 2026-10-24T22:52:54+05:30 — Milestone 1: pure game rules and content
+
+- Changed: added Phaser-free game rules in `src/game/core/` (`math`, `rng`, `health`, `cooldown`, `scoring`, `runFlow`, `waves`, `steering`, `movement`), gameplay data in `src/game/content/` (`balance`, `enemies`, `palette`), and keyboard action mapping in `src/game/input/actions.ts`, each with Vitest tests.
+- Why: keep outcomes (damage, invulnerability, combos, wave plans, enemy steering, movement) testable and independent of rendering, so Phaser scenes only render and route input.
+- Validation: `npm test` passed (8 files, 30 tests); `npm run typecheck` passed; `npm run lint` passed.
+- Limitations: not yet wired into Phaser scenes; balance numbers are untested in play.
+
 ## 2026-10-24T22:55:00+05:30 — Bootstrap OBJECT ZERO repository
 
 - Changed: added the event documentation (`AGENTS.md`, `RULES.md`, `README.md`, `CHANGELOG.md`, `AI_USAGE.md`, `SUBMISSION.md`, `.gitignore`, `.github/pull_request_template.md`) copied from the team's `adhentom/junk-arena` template, including the pending Devin Hack Kochi correction (junk-arena PR #2). Added a Next.js 16 + React 19 + TypeScript + Phaser 3.90 scaffold (`package.json`, `package-lock.json`, `.nvmrc`, `tsconfig.json`, `next.config.ts`, `eslint.config.mjs`, `vitest.config.mts`, `src/app/*`, `src/ui/GameShell.tsx`, `src/game/phaser/*`) with a placeholder title scene.
