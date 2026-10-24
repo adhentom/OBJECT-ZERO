@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { applyDamage, createHealth, grantInvulnerability, isInvulnerable } from "./health";
+import { applyDamage, createHealth, grantInvulnerability, heal, isInvulnerable } from "./health";
 
 describe("health", () => {
   it("rejects a non-positive max", () => {
@@ -33,5 +33,13 @@ describe("health", () => {
     const health = { ...createHealth(10), invulnerableUntil: 900 };
     expect(grantInvulnerability(health, 500).invulnerableUntil).toBe(900);
     expect(grantInvulnerability(health, 1200).invulnerableUntil).toBe(1200);
+  });
+
+  it("heals up to the maximum but never revives", () => {
+    const hurt = applyDamage(createHealth(100), 40, 0, 0).health;
+    expect(heal(hurt, 10).hp).toBe(70);
+    expect(heal(hurt, 500).hp).toBe(100);
+    const dead = applyDamage(createHealth(10), 10, 0, 0).health;
+    expect(heal(dead, 50).hp).toBe(0);
   });
 });

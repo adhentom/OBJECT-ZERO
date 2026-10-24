@@ -35,6 +35,8 @@ export const BLASTER = {
 export const WAVES = {
   introMs: 1700,
   clearedMs: 1900,
+  /** Hull repaired after each cleared wave, until the preparation phase arrives in milestone 2. */
+  clearRepair: 10,
   spawnTelegraphMs: 750,
   maxAlive: 36,
   hpGrowthPerWave: 0.1,

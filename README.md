@@ -26,7 +26,7 @@ This template has no application code or required technology stack. The document
 - **Tagline:** Reality Is Your Arsenal.
 - **Short description:** A top-down 2D sci-fi arena survival game. Players survive waves of hostile machines; in later milestones they scan everyday objects with a webcam and an AI picks a matching ability from a fixed, approved catalogue.
 - **Team:** TODO — participant names and GitHub handles.
-- **Working demo:** local only for now — see below.
+- **Working demo:** local only for now; see below.
 - **Technology stack:** Next.js 16 (App Router), React 19, TypeScript 5, Phaser 3.90, Vitest 5, ESLint 9.
 
 ### Run the project
@@ -38,18 +38,43 @@ This template has no application code or required technology stack. The document
 5. Production build: `npm run build && npm start`
 6. Checks: `npm run typecheck`, `npm run lint`, `npm test`
 
+### Controls
+
+| Action | Keys |
+| --- | --- |
+| Move | W A S D or arrow keys |
+| Aim and fire | Mouse; hold the left button |
+| Keyboard-only aim and fire | I J K L (aims in that direction and fires) |
+| Dash (brief invulnerability) | Space or Shift |
+| Pause | Esc or P (Q quits to menu while paused) |
+| Menus | Up/Down, Enter, Esc, or the mouse |
+
 ### Architecture
 
 - `src/app/` — Next.js page shell.
-- `src/ui/` — React components around the game canvas (load errors; later the webcam scan panel).
-- `src/game/phaser/` — Phaser game, scenes and rendering. Phaser is imported only in the browser.
-- Planned: `src/game/core/` (pure, unit-tested game rules), `src/game/content/` (balance and data), `src/game/input/` (keyboard/mouse actions; later gestures).
-- AI and webcam features will run outside the real-time game loop. The AI may only choose an id from the fixed ability catalogue; it never generates code or mechanics.
+- `src/ui/GameShell.tsx` — mounts the Phaser canvas in the browser, shows load errors, and mirrors game status in a screen-reader line.
+- `src/game/core/` — pure, unit-tested rules with no Phaser or DOM: health and invulnerability, cooldowns, combo scoring, run flow, wave plans, enemy steering, movement.
+- `src/game/content/` — balance numbers, enemy definitions, palette.
+- `src/game/input/` — key bindings mapped to movement and aim vectors.
+- `src/game/bridge/` — low-frequency typed events from the game to React.
+- `src/game/phaser/` — scenes (Boot, Menu, Arena, Hud, Pause, GameOver), entities (Player, Enemy), systems (Weapons, SpawnDirector), and procedural textures and effects.
+- AI and webcam features (later milestones) will run outside the real-time game loop. The AI may only choose an id from a fixed ability catalogue; it never generates code or mechanics.
 
 ### Current status
 
-- Working features: bootstrap only — a title screen renders in a Phaser canvas.
-- Known limitations: no gameplay yet (milestone 1), no webcam, AI or gesture input.
-- Libraries used: [Next.js](https://nextjs.org) (MIT), [React](https://react.dev) (MIT), [Phaser](https://phaser.io) (MIT), [Vitest](https://vitest.dev) (MIT). No external art or audio assets.
+- Working features (milestone 1):
+  - main menu with a controls panel;
+  - top-down arena with acceleration-based movement, a dash, and mouse or IJKL aimed fire;
+  - two enemy types: Drones chase and detonate on contact; Gunners keep their distance and fire after showing a red aim line;
+  - waves that get harder (wave 1 is drones only, Gunners join from wave 2), with spawn warnings and a hull repair after each cleared wave;
+  - HUD with hull, dash meter, wave, hostiles left, score, and combo multiplier;
+  - pause (it also auto-pauses when the window loses focus);
+  - Game Over screen with run stats and a best score kept in `localStorage`; Enter restarts.
+- Known limitations:
+  - no abilities, preparation phase, or third enemy yet (milestone 2);
+  - no audio;
+  - balance has had only short automated play sessions;
+  - no webcam, AI, or gesture input.
+- Libraries used: [Next.js](https://nextjs.org) (MIT), [React](https://react.dev) (MIT), [Phaser](https://phaser.io) (MIT), [Vitest](https://vitest.dev) (MIT). All art is drawn in code; there are no external assets.
 
 See [AI_USAGE.md](AI_USAGE.md) for AI assistance and [CHANGELOG.md](CHANGELOG.md) for the development record.

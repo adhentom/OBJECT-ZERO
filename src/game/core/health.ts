@@ -36,3 +36,8 @@ export function applyDamage(health: Health, amount: number, now: number, invulne
 export function grantInvulnerability(health: Health, until: number): Health {
   return until > health.invulnerableUntil ? { ...health, invulnerableUntil: until } : health;
 }
+
+export function heal(health: Health, amount: number): Health {
+  if (!isAlive(health) || amount <= 0) return health;
+  return { ...health, hp: Math.min(health.maxHp, health.hp + amount) };
+}
