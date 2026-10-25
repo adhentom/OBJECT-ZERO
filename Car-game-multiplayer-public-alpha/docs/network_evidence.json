@@ -1,0 +1,56 @@
+{
+  "scope": "Loopback, automated independent Node client processes; not human/browser/GPU/internet acceptance",
+  "serverPid": 238,
+  "clientPids": [
+    282,
+    290,
+    310
+  ],
+  "sharedStartTick": 28,
+  "trackHash": "1b3bdbf06de3bb91414b00f6e62b524c4141c34febbd5e0b2bc9adf9f844720d",
+  "physicsVersion": "v11.1-stock-noncontact-interruption1-510edd401e103b23",
+  "results": [
+    {
+      "playerId": "5fc46c7b-2aa5-4ea1-9175-5c9f2611ae6d",
+      "name": "Network test A",
+      "status": "finished",
+      "reason": null,
+      "time": 8.725000000000145,
+      "penalties": 0,
+      "checkpoints": 5,
+      "rank": 1
+    },
+    {
+      "playerId": "c2eb5640-e455-43c8-a615-92ae0373b54d",
+      "name": "Network test B",
+      "status": "finished",
+      "reason": null,
+      "time": 8.866666666666804,
+      "penalties": 0,
+      "checkpoints": 5,
+      "rank": 2
+    }
+  ],
+  "waterAndDriverTests": "See npm test output",
+  "metrics": {
+    "status": "local-alpha",
+    "rooms": 1,
+    "ticks": 661,
+    "maxTickMs": 6.201369999999997,
+    "invalidMessages": 17,
+    "overloads": 0,
+    "connections": 4,
+    "lastTickMs": 0.43225600000005215
+  },
+  "passed": [
+    "both clients saw both moving authoritative cars",
+    "same countdown/start and result",
+    "strict protocol/physics/track versions",
+    "malformed/extra/state spoof/invalid/range/stale/future/epoch input rejection",
+    "stale controls brake",
+    "room capacity/ready/host permissions",
+    "rotated-token reconnect keeps same seat and clock",
+    "expired reconnect DNF",
+    "rematch changes epoch and resets readiness"
+  ]
+}

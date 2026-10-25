@@ -1,0 +1,43 @@
+{
+  "scope": "Actual RaceClient and OnlineRenderAdapter in independent Node processes against separate local authority; automated test controls, not browser/GPU/human/internet acceptance.",
+  "protocolVersion": 3,
+  "physicsVersion": "v11.1-stock-noncontact-interruption1-510edd401e103b23",
+  "serverPid": 94,
+  "clientPids": [
+    126,
+    138
+  ],
+  "sharedStartTick": 15,
+  "finished": [
+    {
+      "status": "finished",
+      "time": 8.225000000000174,
+      "checkpoints": 5,
+      "rank": 1
+    },
+    {
+      "status": "finished",
+      "time": 9.191666666666785,
+      "checkpoints": 5,
+      "rank": 2
+    }
+  ],
+  "interruption": {
+    "generation": 2,
+    "phase": "active",
+    "count": 1,
+    "totalMs": 994.69,
+    "currentMs": 0
+  },
+  "passed": [
+    "synchronized484ms host stall freezes both cars and clock, resumes without catchup",
+    "same start/epoch/results",
+    "remote car movement",
+    "two genuine seat identities",
+    "no coins, police, pause or local simulation",
+    "regressive state rejection",
+    "automatic same-seat reconnect and continuing clock",
+    "token-free production events",
+    "rematch epoch reset"
+  ]
+}
